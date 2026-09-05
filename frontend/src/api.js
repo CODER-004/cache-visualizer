@@ -1,4 +1,4 @@
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
+const BASE_URL = "https://cache-visualizer-backend.onrender.com";
 
 export async function putCache(key, value) {
     const response = await fetch(`${BASE_URL}/cache/put`, {
