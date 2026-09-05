@@ -21,7 +21,7 @@ RUN git clone --depth 1 --recurse-submodules https://github.com/drogonframework/
     && mkdir build \
     && cd build \
     && cmake .. -DCMAKE_BUILD_TYPE=Release \
-    && make -j$(nproc) \
+    && make -j1 \
     && make install
 
 WORKDIR /app
@@ -31,7 +31,7 @@ COPY . .
 RUN cmake -S . -B build \
     -DCMAKE_BUILD_TYPE=Release
 
-RUN cmake --build build -j$(nproc)
+RUN cmake --build build -j1
 
 
 FROM ubuntu:24.04
