@@ -33,10 +33,18 @@ int main() {
                     auto response =
                         HttpResponse::newHttpResponse();
 
-                    response->addHeader(
-                        "Access-Control-Allow-Origin",
-                        "http://localhost:5173"
-                    );
+                    std::string origin =
+                        req->getHeader("Origin");
+
+                    if(
+                        origin == "http://localhost:5173" ||
+                        origin == "https://cache-visualizer-one.vercel.app"
+                    ) {
+                        response->addHeader(
+                            "Access-Control-Allow-Origin",
+                            origin
+                        );
+                    }
 
                     response->addHeader(
                         "Access-Control-Allow-Methods",
@@ -61,10 +69,18 @@ int main() {
             [](const HttpRequestPtr& req,
                const HttpResponsePtr& resp) {
 
-                resp->addHeader(
-                    "Access-Control-Allow-Origin",
-                    "http://localhost:5173"
-                );
+                std::string origin =
+                    req->getHeader("Origin");
+
+                if(
+                    origin == "http://localhost:5173" ||
+                    origin == "https://cache-visualizer-one.vercel.app"
+                ) {
+                    resp->addHeader(
+                        "Access-Control-Allow-Origin",
+                        origin
+                    );
+                }
 
                 resp->addHeader(
                     "Access-Control-Allow-Methods",
